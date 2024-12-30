@@ -1,0 +1,94 @@
+import { useState } from "react";
+import { ComparisonCard } from "./ComparisonCard";
+import { PerformanceChart } from "./PerformanceChart";
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/components/ui/use-toast";
+
+export function ComparisonDashboard() {
+  const [prompt, setPrompt] = useState("");
+  const [isComparing, setIsComparing] = useState(false);
+  const { toast } = useToast();
+
+  const mockPerformanceData = [
+    {
+      timestamp: "00:00",
+      gpt4: 100,
+      claude: 95,
+      gemini: 90,
+    },
+    {
+      timestamp: "00:01",
+      gpt4: 98,
+      claude: 97,
+      gemini: 92,
+    },
+    // Add more mock data points
+  ];
+
+  const handleCompare = async () => {
+    if (!prompt.trim()) {
+      toast({
+        title: "Error",
+        description: "Please enter a prompt to compare",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsComparing(true);
+    // Simulate API calls to different models
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    setIsComparing(false);
+  };
+
+  return (
+    <div className="container mx-auto py-8 space-y-8">
+      <div className="space-y-4">
+        <h1 className="text-4xl font-bold">LLM Performance Comparison</h1>
+        <p className="text-muted-foreground">
+          Compare different language models in real-time
+        </p>
+      </div>
+
+      <div className="grid gap-6">
+        <Textarea
+          placeholder="Enter your prompt here..."
+          value={prompt}
+          onChange={(e) => setPrompt(e.target.value)}
+          className="min-h-[100px]"
+        />
+        <Button
+          onClick={handleCompare}
+          disabled={isComparing}
+          className="w-full md:w-auto"
+        >
+          {isComparing ? "Comparing..." : "Compare Models"}
+        </Button>
+      </div>
+
+      <div className="grid md:grid-cols-3 gap-6">
+        <ComparisonCard
+          model="GPT-4"
+          responseTime={150}
+          tokensPerSecond={35}
+          qualityScore={9.5}
+        />
+        <ComparisonCard
+          model="Claude 2"
+          responseTime={180}
+          tokensPerSecond={32}
+          qualityScore={9.2}
+        />
+        <ComparisonCard
+          model="Gemini Pro"
+          responseTime={165}
+          tokensPerSecond={30}
+          qualityScore={9.0}
+        />
+      </div>
+
+      <PerformanceChart data={mockPerformanceData} />
+    </div>
+  );
+}
