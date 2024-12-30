@@ -16,12 +16,18 @@ export function ComparisonDashboard() {
       gpt4: 100,
       claude: 95,
       gemini: 90,
+      palm: 88,
+      llama: 85,
+      mistral: 92,
     },
     {
       timestamp: "00:01",
       gpt4: 98,
       claude: 97,
       gemini: 92,
+      palm: 89,
+      llama: 86,
+      mistral: 93,
     },
     // Add more mock data points
   ];
@@ -67,7 +73,7 @@ export function ComparisonDashboard() {
         </Button>
       </div>
 
-      <div className="grid md:grid-cols-3 gap-6">
+      <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
         <ComparisonCard
           model="GPT-4"
           responseTime={150}
@@ -85,6 +91,24 @@ export function ComparisonDashboard() {
           responseTime={165}
           tokensPerSecond={30}
           qualityScore={9.0}
+        />
+        <ComparisonCard
+          model="PaLM 2"
+          responseTime={170}
+          tokensPerSecond={28}
+          qualityScore={8.8}
+        />
+        <ComparisonCard
+          model="Llama 2"
+          responseTime={190}
+          tokensPerSecond={25}
+          qualityScore={8.5}
+        />
+        <ComparisonCard
+          model="Mistral 7B"
+          responseTime={175}
+          tokensPerSecond={27}
+          qualityScore={8.7}
         />
       </div>
 

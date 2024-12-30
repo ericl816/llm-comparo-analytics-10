@@ -5,6 +5,9 @@ interface PerformanceData {
   gpt4: number;
   claude: number;
   gemini: number;
+  palm: number;
+  llama: number;
+  mistral: number;
 }
 
 interface PerformanceChartProps {
@@ -24,6 +27,9 @@ export function PerformanceChart({ data }: PerformanceChartProps) {
           <Line type="monotone" dataKey="gpt4" stroke="#0EA5E9" strokeWidth={2} />
           <Line type="monotone" dataKey="claude" stroke="#0D9488" strokeWidth={2} />
           <Line type="monotone" dataKey="gemini" stroke="#6366F1" strokeWidth={2} />
+          <Line type="monotone" dataKey="palm" stroke="#EC4899" strokeWidth={2} />
+          <Line type="monotone" dataKey="llama" stroke="#F59E0B" strokeWidth={2} />
+          <Line type="monotone" dataKey="mistral" stroke="#8B5CF6" strokeWidth={2} />
         </LineChart>
       </ResponsiveContainer>
     </div>
