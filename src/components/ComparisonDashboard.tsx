@@ -29,7 +29,6 @@ export function ComparisonDashboard() {
       llama: 86,
       mistral: 93,
     },
-    // Add more mock data points
   ];
 
   const handleCompare = async () => {
@@ -43,15 +42,14 @@ export function ComparisonDashboard() {
     }
 
     setIsComparing(true);
-    // Simulate API calls to different models
     await new Promise((resolve) => setTimeout(resolve, 2000));
     setIsComparing(false);
   };
 
   return (
-    <div className="container mx-auto py-8 space-y-8">
+    <div className="container mx-auto py-8 space-y-8 bg-background">
       <div className="space-y-4">
-        <h1 className="text-4xl font-bold">LLM Performance Comparison</h1>
+        <h1 className="text-4xl font-bold text-foreground">LLM Performance Comparison</h1>
         <p className="text-muted-foreground">
           Compare different language models in real-time
         </p>
@@ -62,12 +60,12 @@ export function ComparisonDashboard() {
           placeholder="Enter your prompt here..."
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
-          className="min-h-[100px]"
+          className="min-h-[100px] bg-card text-card-foreground"
         />
         <Button
           onClick={handleCompare}
           disabled={isComparing}
-          className="w-full md:w-auto"
+          className="w-full md:w-auto bg-primary text-primary-foreground hover:bg-primary/90"
         >
           {isComparing ? "Comparing..." : "Compare Models"}
         </Button>
